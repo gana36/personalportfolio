@@ -152,7 +152,7 @@ export function ContactTerminal() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Your name"
-                className="flex-1 min-w-0 bg-transparent border-none outline-none text-foreground placeholder:text-foreground/30 text-sm sm:text-base"
+                className="flex-1 min-w-0 bg-transparent border-none outline-none text-foreground placeholder:text-foreground/30 text-base"
                 style={{ fontFamily: 'var(--font-mono)' }}
               />
             </div>
@@ -170,7 +170,7 @@ export function ContactTerminal() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your.email@example.com"
-                className="flex-1 min-w-0 bg-transparent border-none outline-none text-foreground placeholder:text-foreground/30 text-sm sm:text-base"
+                className="flex-1 min-w-0 bg-transparent border-none outline-none text-foreground placeholder:text-foreground/30 text-base"
                 style={{ fontFamily: 'var(--font-mono)' }}
               />
             </div>
@@ -188,7 +188,7 @@ export function ContactTerminal() {
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Your message..."
                 rows={4}
-                className="flex-1 min-w-0 bg-transparent border-none outline-none text-foreground placeholder:text-foreground/30 resize-none text-sm sm:text-base"
+                className="flex-1 min-w-0 bg-transparent border-none outline-none text-foreground placeholder:text-foreground/30 resize-none text-base"
                 style={{ fontFamily: 'var(--font-mono)' }}
               />
             </div>

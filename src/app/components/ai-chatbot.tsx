@@ -425,7 +425,7 @@ export function AIChatbot() {
                   placeholder="Ask me anything..."
                   disabled={isTyping}
                   className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2E5BFF]/50 transition-colors placeholder:text-foreground/30 disabled:opacity-50"
-                  style={{ fontFamily: 'var(--font-sans)' }}
+                  style={{ fontFamily: 'var(--font-sans)', fontSize: '16px' }}
                 />
                 <motion.button
                   whileHover={!isTyping ? { scale: 1.05 } : {}}
