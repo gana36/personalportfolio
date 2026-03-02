@@ -103,16 +103,16 @@ export function ContactTerminal() {
           }}
         >
           {/* Terminal header */}
-          <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10">
-            <div className="flex gap-2">
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 min-w-0">
+            <div className="flex gap-2 flex-shrink-0">
               <div className="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
               <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
               <div className="w-3 h-3 rounded-full bg-[#27C93F]"></div>
             </div>
-            <div className="flex items-center gap-2 ml-4">
-              <Terminal className="w-4 h-4 text-[#A8E6CF]" />
+            <div className="flex items-center gap-2 ml-4 min-w-0 overflow-hidden">
+              <Terminal className="w-4 h-4 text-[#A8E6CF] flex-shrink-0" />
               <span
-                className="text-sm text-foreground/70"
+                className="text-xs md:text-sm text-foreground/70 truncate"
                 style={{ fontFamily: 'var(--font-mono)' }}
               >
                 saiganeshakagana@gmail.com
@@ -141,9 +141,9 @@ export function ContactTerminal() {
           {/* Terminal form */}
           <form onSubmit={handleSubmit} className="p-4 space-y-4">
             {/* Name input */}
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
               <span
-                className="text-[#2E5BFF] shrink-0"
+                className="text-[#2E5BFF] shrink-0 text-sm"
                 style={{ fontFamily: 'var(--font-mono)' }}
               >
                 $ --name
@@ -153,15 +153,15 @@ export function ContactTerminal() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Your name"
-                className="flex-1 bg-transparent border-none outline-none text-foreground placeholder:text-foreground/30"
+                className="flex-1 min-w-0 bg-transparent border-none outline-none text-foreground placeholder:text-foreground/30 text-sm sm:text-base"
                 style={{ fontFamily: 'var(--font-mono)' }}
               />
             </div>
 
             {/* Email input */}
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
               <span
-                className="text-[#2E5BFF] shrink-0"
+                className="text-[#2E5BFF] shrink-0 text-sm"
                 style={{ fontFamily: 'var(--font-mono)' }}
               >
                 $ --email
@@ -171,15 +171,15 @@ export function ContactTerminal() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your.email@example.com"
-                className="flex-1 bg-transparent border-none outline-none text-foreground placeholder:text-foreground/30"
+                className="flex-1 min-w-0 bg-transparent border-none outline-none text-foreground placeholder:text-foreground/30 text-sm sm:text-base"
                 style={{ fontFamily: 'var(--font-mono)' }}
               />
             </div>
 
             {/* Message textarea */}
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-1 sm:gap-2">
               <span
-                className="text-[#2E5BFF] shrink-0"
+                className="text-[#2E5BFF] shrink-0 text-sm"
                 style={{ fontFamily: 'var(--font-mono)' }}
               >
                 $ --message
@@ -189,7 +189,7 @@ export function ContactTerminal() {
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Your message..."
                 rows={4}
-                className="flex-1 bg-transparent border-none outline-none text-foreground placeholder:text-foreground/30 resize-none"
+                className="flex-1 min-w-0 bg-transparent border-none outline-none text-foreground placeholder:text-foreground/30 resize-none text-sm sm:text-base"
                 style={{ fontFamily: 'var(--font-mono)' }}
               />
             </div>

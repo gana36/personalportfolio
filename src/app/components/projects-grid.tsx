@@ -495,6 +495,14 @@ function ProjectPanel({ project, onClose }: { project: Project; onClose: () => v
 
 export function ProjectsGrid() {
   const [selected, setSelected] = useState<Project | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelected(null); };
@@ -523,16 +531,29 @@ export function ProjectsGrid() {
         </p>
       </motion.div>
 
+      {/* Mobile backdrop when panel open */}
+      <AnimatePresence>
+        {selected && isMobile && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-black/70 md:hidden"
+            onClick={() => setSelected(null)}
+          />
+        )}
+      </AnimatePresence>
+
       {/* flex layout: grid + panel */}
       <div className="max-w-7xl mx-auto flex gap-4 items-start">
 
         {/* ── project grid ── */}
         <motion.div
-          animate={{ flexBasis: panelOpen ? '50%' : '100%' }}
+          animate={{ flexBasis: panelOpen && !isMobile ? '50%' : '100%' }}
           transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           style={{ flexShrink: 0 }}
           className={`grid gap-4 min-w-0 ${
-            panelOpen
+            panelOpen && !isMobile
               ? 'grid-cols-2 auto-rows-[220px]'
               : 'grid-cols-1 md:grid-cols-4 auto-rows-[300px]'
           }`}
@@ -644,13 +665,18 @@ export function ProjectsGrid() {
           {selected && (
             <motion.div
               key={selected.title}
-              initial={{ opacity: 0, x: 48 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 48 }}
+              initial={{ opacity: 0, y: isMobile ? 60 : 0, x: isMobile ? 0 : 48 }}
+              animate={{ opacity: 1, y: 0, x: 0 }}
+              exit={{ opacity: 0, y: isMobile ? 60 : 0, x: isMobile ? 0 : 48 }}
               transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-              className="flex-1 sticky top-20 self-start min-w-0 rounded-2xl overflow-hidden"
+              className="
+                fixed inset-x-3 bottom-3 z-50 rounded-2xl overflow-hidden
+                top-[72px]
+                md:relative md:inset-auto md:top-auto md:bottom-auto
+                md:flex-1 md:sticky md:top-20 md:self-start md:min-w-0
+                md:h-[calc(100vh-120px)]
+              "
               style={{
-                height: 'calc(100vh - 120px)',
                 background: 'rgba(16, 16, 16, 0.96)',
                 backdropFilter: 'blur(24px)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',

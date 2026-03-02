@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { NeuralNetwork } from './neural-network';
 
@@ -6,6 +6,7 @@ export function HeroSection() {
   const [displayText, setDisplayText] = useState('');
   const fullText = 'Software Engineer & Data Scientist';
   const [isTyping, setIsTyping] = useState(true);
+  const [cvToast, setCvToast] = useState(false);
 
   useEffect(() => {
     if (isTyping && displayText.length < fullText.length) {
@@ -75,7 +76,7 @@ export function HeroSection() {
             Specialized in LLMs, MLOps, and scalable architecture.
           </p>
 
-          <div className="flex gap-4 pt-4">
+          <div className="flex flex-wrap gap-4 pt-4">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -87,15 +88,63 @@ export function HeroSection() {
             >
               View Projects
             </motion.button>
-            <a
-              href="/your_resume.docx"
-              download
-              className="px-6 py-3 bg-transparent border-2 border-[#2E5BFF] text-[#2E5BFF] rounded-lg hover:bg-[#2E5BFF]/10 transition-colors inline-block"
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                setCvToast(true);
+                setTimeout(() => setCvToast(false), 3500);
+              }}
+              className="px-6 py-3 bg-transparent border-2 border-[#2E5BFF] text-[#2E5BFF] rounded-lg hover:bg-[#2E5BFF]/10 transition-colors"
               style={{ fontFamily: 'var(--font-mono)' }}
             >
               Download CV
-            </a>
+            </motion.button>
           </div>
+
+          {/* CV coming-soon toast */}
+          <AnimatePresence>
+            {cvToast && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+                className="flex items-start gap-3 px-4 py-3 rounded-xl max-w-sm"
+                style={{
+                  background: 'rgba(18,18,18,0.95)',
+                  border: '1px solid rgba(168,230,207,0.35)',
+                  backdropFilter: 'blur(16px)',
+                }}
+              >
+                <span className="text-[#A8E6CF] text-lg leading-none mt-0.5">✦</span>
+                <div>
+                  <p className="text-[#A8E6CF] text-sm font-mono font-bold mb-0.5">
+                    Resume in progress
+                  </p>
+                  <p className="text-foreground/60 text-xs font-mono leading-relaxed">
+                    Connect on{' '}
+                    <a
+                      href="https://linkedin.com/in/saiganeshakula/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#2E5BFF] underline"
+                    >
+                      LinkedIn
+                    </a>
+                    {' '}or use the{' '}
+                    <button
+                      onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+                      className="text-[#2E5BFF] underline cursor-pointer"
+                    >
+                      contact form
+                    </button>
+                    {' '}in the meantime.
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
 
         {/* Right side - Neural Network Visualization */}

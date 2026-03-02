@@ -270,7 +270,7 @@ export function AIChatbot() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-8 right-8 z-50 w-16 h-16 rounded-full flex items-center justify-center shadow-lg"
+            className="fixed bottom-5 right-5 md:bottom-8 md:right-8 z-50 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg"
             style={{ background: 'rgba(30, 30, 30, 0.9)', border: '2px solid #2E5BFF' }}
           >
             <motion.div
@@ -290,8 +290,11 @@ export function AIChatbot() {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className="fixed bottom-[110px] right-8 z-50 w-[400px] h-[600px] rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+            className="fixed z-50 rounded-2xl overflow-hidden shadow-2xl flex flex-col
+                       bottom-[76px] left-3 right-3
+                       md:bottom-[110px] md:left-auto md:right-8 md:w-[400px]"
             style={{
+              height: 'min(calc(100dvh - 88px), 600px)',
               background: 'rgba(30, 30, 30, 0.8)',
               backdropFilter: 'blur(20px)',
               border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -318,7 +321,7 @@ export function AIChatbot() {
                       transition={{ duration: 2, repeat: Infinity }}
                     />
                     <span className="text-xs text-foreground/60" style={{ fontFamily: 'var(--font-mono)' }}>
-                      {geminiModel ? 'Gemini 2.0 Flash' : 'Online'}
+                      Online
                     </span>
                   </div>
                 </div>
