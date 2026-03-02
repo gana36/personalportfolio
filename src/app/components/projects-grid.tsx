@@ -61,7 +61,7 @@ const projects: Project[] = [
     description:
       'Group decision-making app combining Gemini 2.0 multimodal API with Yelp Fusion to give intelligent restaurant recommendations.',
     tech: ['React 19', 'TypeScript', 'Firestore', 'AWS'],
-    span: 'col-span-2 row-span-1',
+    span: 'col-span-1 md:col-span-2 row-span-1',
     github: 'https://github.com/gana36/YELPB',
     youtube: 'https://youtu.be/0NWjm0Mo3k0',
     readmeRepo: 'YELPB',
@@ -333,6 +333,7 @@ function ProjectChat({ project }: { project: Project }) {
           onKeyDown={e => e.key === 'Enter' && send()}
           placeholder={`Ask about ${project.title}…`}
           className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#2E5BFF]/50 placeholder:text-foreground/30"
+          style={{ fontSize: '16px' }}
         />
         <button onClick={send} className="p-2 bg-[#2E5BFF] rounded-lg hover:bg-[#2E5BFF]/90 transition-colors flex-shrink-0">
           <Send className="w-3 h-3 text-white" />
@@ -555,7 +556,7 @@ export function ProjectsGrid() {
           className={`grid gap-4 min-w-0 w-full ${
             panelOpen && !isMobile
               ? 'grid-cols-2 auto-rows-[220px]'
-              : 'grid-cols-1 md:grid-cols-4 auto-rows-[300px]'
+              : 'grid-cols-1 md:grid-cols-4 md:auto-rows-[300px]'
           }`}
         >
           {projects.map((project, index) => {
