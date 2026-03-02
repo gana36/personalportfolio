@@ -68,7 +68,7 @@ const GLASS = {
   background: 'rgba(30, 30, 30, 0.6)',
   backdropFilter: 'blur(20px)',
   border: '1px solid rgba(255, 255, 255, 0.08)',
-} as const;
+};
 
 export function AchievementsSection() {
   return (

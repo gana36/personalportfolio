@@ -18,7 +18,7 @@ export function HeroSection() {
   }, [displayText, isTyping]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 md:px-8 relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center px-4 md:px-8 relative overflow-hidden pt-20 md:pt-0">
       {/* Mesh gradient background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-0 left-0 w-96 h-96 bg-[#2E5BFF] rounded-full blur-[120px]"></div>
