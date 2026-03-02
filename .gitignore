@@ -1,0 +1,11 @@
+node_modules
+your_resume.docx
+.env
+.env.local
+.env*.local
+dist
+guidelines
+guidelines/Guidelines.md
+ATTRIBUTION.md
+extract.py
+resume_parsed.txt
