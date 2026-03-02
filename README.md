@@ -1,11 +1,29 @@
+# saiganeshakula.com — Personal Portfolio
 
-  # Dark-mode Portfolio Design
+My personal portfolio site built with React, Vite, Tailwind CSS, and Framer Motion. Live at [saiganeshakula.com](https://saiganeshakula.com).
 
-  This is a code bundle for Dark-mode Portfolio Design. The original project is available at https://www.figma.com/design/mgEAQpVjQV9TOvbrh10KOW/Dark-mode-Portfolio-Design.
+## Stack
 
-  ## Running the code
+- **React + Vite + TypeScript** — frontend
+- **Tailwind CSS v4** — styling
+- **Framer Motion** — animations
+- **Gemini 2.0 Flash** — AI chatbot (CAG with resume context)
+- **EmailJS** — contact form
+- **AWS S3 + CloudFront** — hosting & CDN
+- **GitHub Actions** — CI/CD (auto-deploy on push to `main`)
 
-  Run `npm i` to install the dependencies.
+## Running locally
 
-  Run `npm run dev` to start the development server.
-  
+```bash
+npm install
+npm run dev
+```
+
+Create a `.env.local` with:
+
+```
+VITE_GEMINI_API_KEY=...
+VITE_EMAILJS_SERVICE_ID=...
+VITE_EMAILJS_TEMPLATE_ID=...
+VITE_EMAILJS_PUBLIC_KEY=...
+```
