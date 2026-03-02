@@ -1,10 +1,9 @@
 import { motion } from 'motion/react';
 import { Send, Terminal } from 'lucide-react';
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import emailjs from '@emailjs/browser';
 
 export function ContactTerminal() {
-  const [command, setCommand] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -14,7 +13,7 @@ export function ContactTerminal() {
   ]);
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!name || !email || !message) {

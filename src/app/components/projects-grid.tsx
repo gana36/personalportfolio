@@ -544,15 +544,15 @@ export function ProjectsGrid() {
         )}
       </AnimatePresence>
 
-      {/* flex layout: grid + panel */}
-      <div className="max-w-7xl mx-auto flex gap-4 items-start">
+      {/* flex layout: grid + panel (desktop only — mobile uses block) */}
+      <div className="max-w-7xl mx-auto md:flex md:gap-4 md:items-start">
 
         {/* ── project grid ── */}
         <motion.div
           animate={{ flexBasis: panelOpen && !isMobile ? '50%' : '100%' }}
           transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           style={{ flexShrink: 0 }}
-          className={`grid gap-4 min-w-0 ${
+          className={`grid gap-4 min-w-0 w-full ${
             panelOpen && !isMobile
               ? 'grid-cols-2 auto-rows-[220px]'
               : 'grid-cols-1 md:grid-cols-4 auto-rows-[300px]'
@@ -670,8 +670,8 @@ export function ProjectsGrid() {
               exit={{ opacity: 0, y: isMobile ? 60 : 0, x: isMobile ? 0 : 48 }}
               transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
               className="
-                fixed inset-x-3 bottom-3 z-50 rounded-2xl overflow-hidden
-                top-[72px]
+                fixed inset-x-3 z-50 rounded-2xl overflow-hidden
+                top-[72px] bottom-[84px]
                 md:relative md:inset-auto md:top-auto md:bottom-auto
                 md:flex-1 md:sticky md:top-20 md:self-start md:min-w-0
                 md:h-[calc(100vh-120px)]

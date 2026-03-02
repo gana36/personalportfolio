@@ -154,7 +154,7 @@ export function GlassyNav() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden mt-4 pt-4 border-t border-white/10"
+            className="md:hidden mt-4 pt-4 border-t border-white/10 relative z-20"
           >
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (

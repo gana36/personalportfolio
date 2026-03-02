@@ -72,6 +72,8 @@ export function ExperienceTimeline() {
         return Award;
       case 'founder':
         return Rocket;
+      default:
+        return Briefcase;
     }
   };
 

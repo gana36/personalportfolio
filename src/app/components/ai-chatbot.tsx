@@ -47,7 +47,7 @@ PROJECTS
 Procheck — Full-stack medical protocol search (React/TypeScript, FastAPI, Firebase, Elasticsearch, Gemini)
 - Hybrid AI search: Elasticsearch BM25 + Gemini semantic vectors (RRF ranking)
 - LLM query enhancement, intent classification (8 medical categories), citation tracking
-- Live: procheck-app.web.app | GitHub: github.com/gana36/procheck
+- Live: https://procheck-473021.web.app/ | GitHub: github.com/gana36/procheck
 
 Flight Price Estimation — MLOps pipeline (Random Forest, XGBoost, LightGBM, FastAPI, Docker, AWS ECS)
 - R² 0.9838, MAE ₹1559, RMSE ₹2891 on 300K+ records; <50ms inference
@@ -251,7 +251,7 @@ export function AIChatbot() {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSend();
@@ -421,7 +421,7 @@ export function AIChatbot() {
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={handleKeyPress}
+                  onKeyDown={handleKeyDown}
                   placeholder="Ask me anything..."
                   disabled={isTyping}
                   className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2E5BFF]/50 transition-colors placeholder:text-foreground/30 disabled:opacity-50"
