@@ -1,6 +1,9 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect, useRef } from 'react';
 import { Github, ExternalLink, Youtube, X, Send } from 'lucide-react';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+const _apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
 interface Project {
   title: string;
@@ -267,34 +270,70 @@ function ProjectChat({ project }: { project: Project }) {
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const chatRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (_apiKey) {
+      const systemPrompt = `You are a concise assistant for the project "${project.title}".
+Project details:
+- Description: ${project.description}
+- Tech stack: ${project.tech.join(', ')}
+${project.github ? `- GitHub: ${project.github}` : ''}
+${project.demo ? `- Live demo: ${project.demo}` : ''}
+${project.youtube ? `- Demo video: ${project.youtube}` : ''}
+Answer questions about this project only. Keep answers short (2-4 sentences).`;
+
+      const model = new GoogleGenerativeAI(_apiKey).getGenerativeModel({
+        model: 'gemini-2.0-flash',
+        systemInstruction: systemPrompt,
+      });
+      chatRef.current = model.startChat({ history: [] });
+    }
+  }, [project.title]);
 
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
 
-  const respond = (q: string): string => {
-    const l = q.toLowerCase();
-    if (l.includes('tech') || l.includes('stack') || l.includes('built'))
-      return `${project.title} uses: ${project.tech.join(', ')}.`;
-    if (l.includes('what') || l.includes('about') || l.includes('describe'))
-      return project.description;
-    if (l.includes('github') || l.includes('code') || l.includes('repo'))
-      return project.github ? `Code → ${project.github}` : 'Source not publicly available.';
-    if (l.includes('live') || l.includes('demo') || l.includes('url'))
-      return project.demo ? `Live → ${project.demo}` : 'No live demo available.';
-    if (l.includes('video') || l.includes('youtube'))
-      return project.youtube ? `Demo video → ${project.youtube}` : 'No video available.';
-    return `${project.title}: ${project.description} Built with ${project.tech.join(', ')}.`;
-  };
-
-  const send = () => {
-    if (!input.trim()) return;
+  const send = async () => {
+    if (!input.trim() || typing) return;
     const q = input;
+    const botId = `b${Date.now()}`;
     setMessages(p => [...p, { id: `u${Date.now()}`, sender: 'user', text: q }]);
     setInput('');
     setTyping(true);
-    setTimeout(() => {
-      setMessages(p => [...p, { id: `b${Date.now()}`, sender: 'bot', text: respond(q) }]);
-      setTyping(false);
-    }, 500 + Math.random() * 400);
+
+    if (chatRef.current) {
+      try {
+        const result = await chatRef.current.sendMessageStream(q);
+        let fullText = '';
+        let firstChunk = true;
+        for await (const chunk of result.stream) {
+          fullText += chunk.text();
+          if (firstChunk) {
+            setTyping(false);
+            setMessages(p => [...p, { id: botId, sender: 'bot', text: fullText }]);
+            firstChunk = false;
+          } else {
+            setMessages(p => p.map(m => m.id === botId ? { ...m, text: fullText } : m));
+          }
+        }
+      } catch {
+        setTyping(false);
+        setMessages(p => [...p, { id: botId, sender: 'bot', text: 'Something went wrong. Try again!' }]);
+      }
+    } else {
+      // fallback when no API key
+      setTimeout(() => {
+        const l = q.toLowerCase();
+        let reply = `${project.title}: ${project.description} Built with ${project.tech.join(', ')}.`;
+        if (l.includes('tech') || l.includes('stack')) reply = `${project.title} uses: ${project.tech.join(', ')}.`;
+        else if (l.includes('github') || l.includes('code')) reply = project.github ? `Code → ${project.github}` : 'Source not public.';
+        else if (l.includes('demo') || l.includes('live')) reply = project.demo ? `Live → ${project.demo}` : 'No live demo.';
+        else if (l.includes('video')) reply = project.youtube ? `Video → ${project.youtube}` : 'No video available.';
+        setMessages(p => [...p, { id: botId, sender: 'bot', text: reply }]);
+        setTyping(false);
+      }, 400);
+    }
   };
 
   return (
