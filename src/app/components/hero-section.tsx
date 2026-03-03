@@ -4,7 +4,7 @@ import { NeuralNetwork } from './neural-network';
 
 export function HeroSection() {
   const [displayText, setDisplayText] = useState('');
-  const fullText = 'Software Engineer & Data Scientist';
+  const fullText = 'AI/ML Engineer & Data Scientist';
   const [isTyping, setIsTyping] = useState(true);
   const [cvToast, setCvToast] = useState(false);
 
@@ -50,7 +50,7 @@ export function HeroSection() {
             className="inline-block px-4 py-2 bg-[#2E5BFF]/10 border border-[#2E5BFF]/30 rounded-lg"
           >
             <span className="text-[#2E5BFF] text-sm" style={{ fontFamily: 'var(--font-mono)' }}>
-              {'>'} Currently: AI Researcher @ BigLab
+              {'>'} Currently: AI Engineer @ BigLab!
             </span>
           </motion.div>
 
