@@ -10,6 +10,50 @@
     <body>
       <div id="root"></div>
       <script type="module" src="/src/main.tsx"></script>
+      <script>
+        (function () {
+          const canvas = document.createElement('canvas');
+          canvas.width = 64; canvas.height = 64;
+          const ctx = canvas.getContext('2d');
+          const link = document.createElement('link');
+          link.rel = 'icon'; link.type = 'image/png';
+          document.head.appendChild(link);
+
+          let t = 0;
+          function lerpColor(a, b, n) {
+            const ah = parseInt(a.slice(1), 16);
+            const bh = parseInt(b.slice(1), 16);
+            const ar = ah >> 16, ag = (ah >> 8) & 0xff, ab = ah & 0xff;
+            const br = bh >> 16, bg = (bh >> 8) & 0xff, bb = bh & 0xff;
+            const r = Math.round(ar + (br - ar) * n);
+            const g = Math.round(ag + (bg - ag) * n);
+            const bl = Math.round(ab + (bb - ab) * n);
+            return `rgb(${r},${g},${bl})`;
+          }
+
+          function draw() {
+            t += 0.03;
+            const n = (Math.sin(t) + 1) / 2;
+            const color = lerpColor('#2E5BFF', '#A8E6CF', n);
+
+            ctx.clearRect(0, 0, 64, 64);
+            ctx.fillStyle = '#121212';
+            ctx.beginPath();
+            ctx.roundRect(0, 0, 64, 64, 12);
+            ctx.fill();
+
+            ctx.fillStyle = color;
+            ctx.font = 'bold 56px monospace';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('∞', 32, 34);
+
+            link.href = canvas.toDataURL('image/png');
+            requestAnimationFrame(draw);
+          }
+          draw();
+        })();
+      </script>
     </body>
   </html>
   

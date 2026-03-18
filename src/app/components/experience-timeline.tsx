@@ -14,7 +14,7 @@ const milestones: Milestone[] = [
     year: 'Dec 2025 - Present',
     title: 'Co-Founder',
     organization: 'BillBeam',
-    description: 'Co-founding BillBeam — building AI-powered billing and invoicing infrastructure to streamline financial workflows for modern businesses.',
+    description: 'Co-founding BillBeam — a smart bill-splitting app that simplifies shared expenses between friends and groups with an intuitive, hassle-free experience.',
     type: 'founder',
   },
   {

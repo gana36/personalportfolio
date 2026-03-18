@@ -75,7 +75,9 @@ export default function App() {
       <footer className="relative z-10 py-8 px-4 md:px-8 border-t border-white/10">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-sm text-foreground/50" style={{ fontFamily: 'var(--font-mono)' }}>
-            © {new Date().getFullYear()} Sai Ganesh Akula. Built with React, Tailwind CSS, and Motion.
+            © {new Date().getFullYear()} Sai Ganesh Akula.
+            <br />
+            <span className="text-xs text-foreground/30">no neural networks were harmed in the making of this portfolio</span>
           </p>
         </div>
       </footer>

@@ -22,7 +22,7 @@ Databases: MySQL, PostgreSQL, MongoDB, Qdrant, Chroma, InfluxDB
 
 EXPERIENCE
 BillBeam — Co-Founder (December 2025 – Present)
-- Co-founding BillBeam, building AI-powered billing and invoicing infrastructure to streamline financial workflows for modern businesses.
+- Co-founding BillBeam, a smart bill-splitting app that simplifies shared expenses between friends and groups.
 
 BigLab — AI Engineer / Lab Assistant (June 2025 – Present)
 - Engineering AI systems and pipelines at BigLab. Leading applied research on LLM-based architectures and production ML deployments.
