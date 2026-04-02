@@ -31,6 +31,16 @@ const hackathons = [
     link: 'https://devpost.com/software/procheck',
     color: '#4285F4',
   },
+  {
+    event: 'Med-Gemma Impact Challenge',
+    organizer: 'Google × Kaggle',
+    placement: 'Agentic Workflow Prize',
+    prize: 'Agentic Workflow Prize 1',
+    date: '2025',
+    participants: '',
+    link: 'https://github.com/gana36/case-twin',
+    color: '#20BEFF',
+  },
 ];
 
 const certifications = [

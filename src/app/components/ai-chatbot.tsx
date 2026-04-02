@@ -94,6 +94,7 @@ Link: https://arxiv.org/abs/2502.15819
 HACKATHON WINS
 - 2nd Place — Rift Rewind Hackathon (AWS × Riot Games), Sep–Nov 2025: $7,000 cash + $7,000 AWS credits, 2,642 participants. Built an AI-powered League of Legends seasonal recap tool.
 - 2nd Place (Elastic Challenge) — AI Accelerate: Unlocking New Frontiers (Google Cloud × Elastic × Fivetran), Sep–Oct 2025: $50,000 total prize pool, 2,735 participants. Built Procheck, a hybrid AI medical protocol search engine.
+- Agentic Workflow Prize 1 — Med-Gemma Impact Challenge (Google × Kaggle), 2025. Built CaseTwin, a clinical intelligence platform that collapses a 4-hour medical referral workflow to ~5 minutes using MedGemma, CrewAI agents, and Qdrant vector search.
 
 CERTIFICATIONS
 - AWS Certified Cloud Practitioner

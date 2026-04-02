@@ -15,6 +15,7 @@ interface Project {
   youtube?: string;
   imageURL?: string;
   readmeRepo: string;
+  readmeOwner?: string;
 }
 
 const projects: Project[] = [
@@ -88,6 +89,16 @@ const projects: Project[] = [
     github: 'https://github.com/gana36/taxi-weather-analytics',
     imageURL: 's3urlimagetaxiweatheranalytics',
     readmeRepo: 'taxi-weather-analytics',
+  },
+  {
+    title: 'CaseTwin',
+    description:
+      'Clinical intelligence platform collapsing a 4-hour medical referral workflow to ~5 minutes. Combines chest X-ray analysis via MedGemma, case matching with MedSiglip embeddings, agentic hospital routing, and auto-generated referral memos. Won Agentic Workflow Prize 1 at the Google × Kaggle Med-Gemma Impact Challenge.',
+    tech: ['MedGemma', 'CrewAI', 'Gemini 2.5', 'FastAPI', 'Qdrant'],
+    span: 'col-span-1 row-span-1',
+    github: 'https://github.com/gana36/case-twin',
+    youtube: 'https://youtu.be/7vBo-Qunr3o',
+    readmeRepo: 'case-twin',
   },
   {
     title: 'CryptoStreamML',
@@ -396,7 +407,7 @@ function ProjectPanel({ project, onClose }: { project: Project; onClose: () => v
       for (const branch of ['main', 'master']) {
         try {
           const r = await fetch(
-            `https://raw.githubusercontent.com/gana36/${project.readmeRepo}/${branch}/README.md`,
+            `https://raw.githubusercontent.com/${project.readmeOwner ?? 'gana36'}/${project.readmeRepo}/${branch}/README.md`,
           );
           if (r.ok) {
             setReadme(await r.text());
